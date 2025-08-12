@@ -10,4 +10,7 @@
 
   --salt-track-borderColor: var(--salt-palette-alpha-contrast-high); /* Use --salt-sentiment-neutral-track */
   --salt-track-borderColor-disabled: var(--salt-palette-alpha-contrast-lower); /* Use --salt-sentiment-neutral-track-disabled */
+
+  /* Content */
+  --salt-content-foreground-highlight: var(--salt-palette-accent-weaker);
 }

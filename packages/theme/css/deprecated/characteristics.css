@@ -278,6 +278,9 @@
   --salt-actionable-secondary-foreground-disabled: var(--salt-actionable-subtle-foreground-disabled);
   --salt-actionable-secondary-foreground-hover: var(--salt-actionable-subtle-foreground-hover);
   --salt-actionable-secondary-foreground: var(--salt-actionable-subtle-foreground);
+
+  /* Content */
+  --salt-content-foreground-highlight: var(--salt-palette-interact-background-active);
 }
 
 /* Accent */

@@ -266,10 +266,9 @@
 }
 
 .saltPillInput .saltPill:focus-visible {
-  background: var(--salt-content-foreground-highlight);
-  color: var(--salt-content-primary-foreground);
-  --saltIcon-color: var(--salt-content-primary-foreground);
-  border-color: transparent;
+  background: var(--salt-actionable-bold-background-active);
+  color: var(--salt-actionable-bold-foreground-active);
+  border-color: var(--salt-actionable-bold-borderColor-active);
   outline: none;
 }
 
@@ -308,11 +307,6 @@
 /* Reset in the  class */
 .saltPillInput-input:focus {
   outline: none;
-}
-
-/* Style applied to selected input */
-.saltPillInput-input::selection {
-  background: var(--salt-content-foreground-highlight);
 }
 
 /* Style applied to selected input if `disabled={true}` */

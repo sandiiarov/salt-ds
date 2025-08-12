@@ -12,5 +12,4 @@
   --salt-content-foreground-hover: var(--salt-palette-accent-strong);
   --salt-content-foreground-active: var(--salt-palette-accent-stronger);
   --salt-content-foreground-visited: var(--salt-palette-foreground-visited);
-  --salt-content-foreground-highlight: var(--salt-palette-accent-weaker);
 }

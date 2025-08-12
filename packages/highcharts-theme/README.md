@@ -33,6 +33,7 @@ The Salt Highcharts theme overrides the default Highcharts CSS. To ensure the th
 > You can download the [Highcharts CSS
 > here](https://code.highcharts.com/10.2.0/css/highcharts.css), specifying the
 > required version via the URL.
+> For more information on loading Highcharts CSS, [visit the Highcharts docs](https://www.highcharts.com/docs/chart-design-and-style/style-by-css).
 
 ### Import Salt Highcharts theme
 
@@ -68,9 +69,78 @@ For granular control, you can also use the `Highcharts.merge()` utility function
 
 To see which Options properties the Salt Highchart Theme package provides, see `src/highcharts-options-salt.ts`.
 
-### Patterns and Fills
+### Patterns and fills
 
-The Salt Highcharts theme also provides Salt patterns and fills that can be applied to create visible contrast between series. For example, the `salt-line-patterns` class applies
-a line pattern to each series in a Line Chart.
+The Salt Highcharts theme provides patterns and fills to create visible contrast between series. This improves accessibility and readability, especially for users who rely on non‑color cues.
 
-Guidance on Fills TBA.
+#### Line patterns
+
+Apply line patterns to line‑type charts by adding `salt-line-patterns` to the chart container (alongside `highcharts-theme-salt`).
+
+```jsx
+<div className="highcharts-theme-salt salt-line-patterns">
+  <HighchartsReact highcharts={Highcharts} options={yourChartSpecificOptions} />
+  {/* e.g., LineChart */}
+  {/* Patterns are applied per series */}
+  {/* No changes needed in options to enable patterns */}
+  {/* Works with the Salt Highcharts CSS theme */}
+</div>
+```
+
+#### Pattern fills
+
+Apply fill patterns (e.g., for donut/pie/bar) by adding `salt-fill-patterns` to the chart container.
+
+```jsx
+<div className="highcharts-theme-salt salt-fill-patterns">
+  <HighchartsReact highcharts={Highcharts} options={yourChartSpecificOptions} />
+</div>
+```
+
+Notes:
+
+- Make sure the chart is wrapped with `highcharts-theme-salt` so the Salt theme styles apply.
+- Patterns are purely CSS‑driven; Highcharts options do not need to be modified to enable them.
+
+## Chart density
+
+Highcharts does not automatically respond to changes in CSS custom properties after the initial render. Use the `useChart` hook to trigger redraws when density changes and to retrieve density‑aware values for your chart options.
+
+### Usage
+
+The `useChart` hook takes a `chartRef` and reads the current Salt `density` internally.
+
+```jsx
+import { useRef, useMemo } from "react";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import { useChart } from "@salt-ds/highcharts-theme";
+
+export const DensityAwareChart = () => {
+  const chartRef = useRef(null);
+
+  // Force a redraw and grab density-aware values (density is read internally)
+  const { legendIconSize } = useChart({ chartRef });
+
+  const options = useMemo(
+    () => ({
+      chart: { type: "pie" },
+      legend: {
+        symbolHeight: legendIconSize,
+        symbolWidth: legendIconSize,
+      },
+    }),
+    [legendIconSize],
+  );
+
+  return (
+    <div className="highcharts-theme-salt">
+      <HighchartsReact
+        ref={chartRef}
+        highcharts={Highcharts}
+        options={options}
+      />
+    </div>
+  );
+};
+```

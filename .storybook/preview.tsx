@@ -14,7 +14,11 @@ import "@fontsource/pt-mono";
 import "@salt-ds/theme/css/theme-next.css";
 import "@salt-ds/theme/index.css";
 import "./styles.css";
-
+import "highcharts/css/highcharts.css";
+import "@salt-ds/highcharts-theme/index.css";
+import "highcharts/css/highcharts.css";
+import "@salt-ds/highcharts-theme/index.css";
+import "./styles.css";
 import { SaltProvider, SaltProviderNext } from "@salt-ds/core";
 import { DocsContainer } from "@storybook/addon-docs";
 import type { Preview } from "@storybook/react-vite";
